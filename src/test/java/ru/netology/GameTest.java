@@ -2,23 +2,23 @@ package ru.netology;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
-    Player player1 = new Player(1, "player1", 600);
-    Player player2 = new Player(2, "player2", 450);
-    Player player3 = new Player(3, "player3", 500);
-    Player player4 = new Player(4, "player4", 500);
+    Player player1 = new Player("player1", 600);
+    Player player2 = new Player("player2", 450);
+    Player player3 = new Player("player3", 500);
+    Player player4 = new Player("player4", 500);
 
     @Test
     public void shouldRegisterPlayer() {
         Game game = new Game();
         game.register(player1);
-        ArrayList<Player> expected = new ArrayList<>();
-        expected.add(player1);
-        ArrayList<Player> actual = game.findAll();
+        HashMap<String, Integer> expected = new HashMap<>();
+        expected.put(player1.getName(), player1.getStrength());
+        HashMap<String, Integer> actual = game.findAll();
         assertEquals(expected, actual);
     }
 
@@ -45,8 +45,8 @@ class GameTest {
         Game game = new Game();
         game.register(player1);
         game.register(player2);
-        Player expected = player2;
-        Player actual = game.findByName("player2");
+        int expected = player2.getStrength();
+        int actual = game.findByName("player2");
         assertEquals(expected, actual);
     }
 
